@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "push": "git add .; git commit -m 'made changes'; git push",
+    "deploy": "yarn push; git push heroku master"
   },
   "dependencies": {
     "await-to-js": "^2.1.1",
