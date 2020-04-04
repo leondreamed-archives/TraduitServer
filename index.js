@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 
-mongoose.connect(``)
+mongoose.connect(`mongodb+srv://traduit:${process.env.DB_PASSWORD}@traduit-guxow.mongodb.net/test`);
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,4 +21,4 @@ app.post('/users', registerUser);
 const loginUser = require('./controllers/users/login');
 app.get('/users', loginUser);
 
-app.listen(port, () => console.log(`Listening on part ${port}`))
+app.listen(port, () => console.log(`Listening on part ${port}`));
