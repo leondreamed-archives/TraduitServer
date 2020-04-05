@@ -17,6 +17,10 @@ const GroupSchema = new Schema({
     ref: 'User',
     type: Schema.Types.ObjectId
   }],
+  notes: [{
+    front: String,
+    back: String
+  }]
 });
 
 GroupSchema.pre('save', function(next) {

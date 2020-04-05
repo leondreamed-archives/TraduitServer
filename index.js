@@ -26,4 +26,7 @@ app.post('/users', registerUser);
 const loginUser = require('./controllers/users/login');
 app.get('/users', loginUser);
 
+const addNote = require('./controllers/users/notes/add');
+app.post('/users/notes', addNote);
+
 app.listen(port, () => console.log(`Listening on part ${port}`));
