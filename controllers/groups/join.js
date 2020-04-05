@@ -16,5 +16,5 @@ module.exports = async (req, res) => {
     {name}, {$push: {groups: user._id}}, {new: true}
   ));
   if (groupUpdateError) return res.status(400).json(groupUpdateError);
-  return res.json(updatedGroup);
+  return res.json({success: true, data: updatedGroup});
 };

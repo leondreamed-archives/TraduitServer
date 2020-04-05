@@ -12,5 +12,5 @@ module.exports = async (req, res) => {
     console.log(userError);
     return res.status(400).json(userError);
   }
-  return res.json(user);
+  return res.json({success: true, data: user});
 };

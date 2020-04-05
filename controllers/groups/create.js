@@ -10,5 +10,5 @@ module.exports = async (req, res) => {
     name, password, members: [user]
   }));
   if (groupError) return res.status(400).json(groupError);
-  return res.json(group);
+  return res.json({success: true, data: group});
 };
