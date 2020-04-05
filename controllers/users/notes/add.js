@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   let [userError, user] = await to(getUser(req));
   if (userError) return res.json(userError);
   // req.body is an array of {front, back} notes
-  const [groupError] = await to(Group.findByIdAndUpdate(user.group, {$push: {notes: req.body}}).exec());
+  const [groupError] = await to(Group.findByIdAndUpdate(user.group, {$push: {notes: {$each: req.body}}}).exec());
   if (groupError) return res.json(groupError);
   return res.json({success: true});
 };
