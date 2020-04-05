@@ -1,6 +1,6 @@
 const to = require('await-to-js').default;
-const {getUser} = require('../utils');
-const Group = require('../../models/Group');
+const {getUser} = require('../../utils');
+const Group = require('../../../models/Group');
 
 module.exports = async (req, res) => {
   let [userError, user] = await to(getUser(req));
