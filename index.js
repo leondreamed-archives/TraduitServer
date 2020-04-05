@@ -20,6 +20,9 @@ app.post('/groups', createGroup);
 const joinGroup = require('./controllers/groups/join');
 app.post('/groups/join', joinGroup);
 
+const getGroup = require('./controllers/groups/get');
+app.get('/groups', getGroup);
+
 const registerUser = require('./controllers/users/register');
 app.post('/users', registerUser);
 
