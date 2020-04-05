@@ -5,6 +5,10 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 
 mongoose.connect(`mongodb+srv://traduit:${process.env.DB_PASSWORD}@traduit-guxow.mongodb.net/test`);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 
 const app = express();
 app.use(bodyParser.json());
