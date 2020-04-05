@@ -6,12 +6,7 @@ const atob = require('atob');
 async function getUser(req) {
   let Authorization = req.headers['authorization'];
   console.log(Authorization);
-  let test = Authorization.replace('Basic ', '');
-  console.log(test);
-  console.log(atob(test));
-  console.log('hi');
-  let str = atob(test);
-  let [username, password] = str.split(':');
+  let [username, password] = atob(Authorization.replace('Basic ', '')).split(':');
   console.log(username, password);
   const [userError, user] = await to(User.findOne({username})
   .select('+password').exec());
