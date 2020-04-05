@@ -25,5 +25,6 @@ GroupSchema.pre('save', function(next) {
     next();
   });
 });
+
 const Group = mongoose.model('Group', GroupSchema);
 module.exports = Group;

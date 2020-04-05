@@ -6,6 +6,9 @@ module.exports = async (req, res) => {
   const [userError, user] = await to(User.create({
     username, password
   }));
-  if (userError) return res.status(400).json(userError);
+  if (userError) {
+    console.log(userError);
+    return res.status(400).json(userError);
+  }
   return res.json(user);
 };
