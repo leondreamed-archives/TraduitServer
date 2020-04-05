@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const to = require('await-to-js').default;
+const atob = require('atob');
 
 async function getUser(req) {
   let Authorization = req.headers['authorization'];
