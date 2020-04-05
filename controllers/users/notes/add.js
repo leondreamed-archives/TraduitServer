@@ -5,8 +5,8 @@ const Group = require('../../../models/Group');
 module.exports = async (req, res) => {
   let [userError, user] = await to(getUser(req));
   if (userError) return res.json(userError);
-  user.groups.forEach(async function(groupId) {
-    await Group.findByIdAndUpdate(groupId, {$push: {cards: req.body}}).exec();
-  });
+  const {front, back} = req.body;
+  const [groupError] = await to(Group.findByIdAndUpdate(user.group, {$push: {cards: {front, back}}}).exec());
+  if (groupError) return res.json(groupError);
   return res.json({success: true});
 };
