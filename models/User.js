@@ -13,10 +13,10 @@ const UserSchema = new Schema({
     required: true,
     select: false
   },
-  groups: [{
+  group: {
     ref: 'Group',
     type: Schema.Types.ObjectId
-  }]
+  }
 });
 
 UserSchema.pre('save', function(next) {

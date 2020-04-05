@@ -1,4 +1,5 @@
 const Group = require('../../models/Group');
+const User = require('../../models/User');
 const to = require('await-to-js').default;
 const {getUser} = require('../utils');
 const bcrypt = require('bcrypt');
@@ -12,9 +13,11 @@ module.exports = async (req, res) => {
   if (!bcrypt.compare(group.password, password)) {
     return res.json({message: "Invalid username or password."});
   }
+  const [updateUserError] = await to(User.findByIdAndUpdate(user._id, {group: group._id}).exec());
+  if (updateUserError) return res.json(updateUserError);
   const [updatedGroup, groupUpdateError] = await to(Group.findOneAndUpdate(
     {name}, {$push: {members: user._id}}, {new: true}
-  ));
+  ).exec());
   if (groupUpdateError) return res.json(groupUpdateError);
   return res.json({success: true, data: updatedGroup});
 };
