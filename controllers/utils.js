@@ -6,6 +6,7 @@ async function getUser(req) {
   const Authorization = req.get('Authorization');
   if (!Authorization) return Promise.reject({message: 'Not authorized'});
   let [username, password] = atob(Authorization.replace('Basic ', '')).split(':');
+  console.log(username, password);
   const [userError, user] = await to(User.findOne({username})
   .select('+password').exec());
   if (userError) return Promise.reject(userError);
