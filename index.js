@@ -8,6 +8,7 @@ mongoose.connect(`mongodb+srv://traduit:${process.env.DB_PASSWORD}@traduit-guxow
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 const createGroup = require('./controllers/groups/create');
 app.post('/groups', createGroup);

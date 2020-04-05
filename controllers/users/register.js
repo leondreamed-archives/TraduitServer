@@ -3,6 +3,8 @@ const to = require('await-to-js').default;
 
 module.exports = async (req, res) => {
   const {username, password} = req.body;
+  console.log(req.body);
+
   const [userError, user] = await to(User.create({
     username, password
   }));
