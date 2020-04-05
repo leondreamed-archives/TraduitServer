@@ -4,9 +4,11 @@ const to = require('await-to-js').default;
 
 async function getUser(req) {
   const Authorization = req.headers['authorization'];
-  console.log(req.headers);
+  console.log(Authorization);
   if (!Authorization) return Promise.reject({message: 'Not authorized'});
-  let [username, password] = atob(Authorization.replace('Basic ', '')).split(':');
+  const str = atob(Authorization.replace('Basic ', '')).split(':');
+  console.log(str);
+  let [username, password] = str;
   console.log(username, password);
   const [userError, user] = await to(User.findOne({username})
   .select('+password').exec());
