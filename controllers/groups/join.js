@@ -10,7 +10,8 @@ module.exports = async (req, res) => {
   const {name, password} = req.body;
   const [groupError, group] = await to(Group.findOne({name}).select('+password').exec());
   if (groupError) return res.json(groupError);
-  if (!bcrypt.compare(password, group.password)) {
+  const match = await bcrypt.compare(password, group.password);
+  if (!match) {
     return res.json({message: "Invalid username or password."});
   }
   const [updateUserError] = await to(User.findByIdAndUpdate(user._id, {group: group._id}).exec());
