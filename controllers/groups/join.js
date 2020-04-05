@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     return res.json({message: "Invalid username or password."});
   }
   const [updatedGroup, groupUpdateError] = await to(Group.findOneAndUpdate(
-    {name}, {$push: {groups: user._id}}, {new: true}
+    {name}, {$push: {members: user._id}}, {new: true}
   ));
   if (groupUpdateError) return res.json(groupUpdateError);
   return res.json({success: true, data: updatedGroup});
