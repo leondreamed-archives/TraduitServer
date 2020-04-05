@@ -3,6 +3,6 @@ const {getUser} = require('../utils');
 
 module.exports = async (req, res) => {
   const [userError, user] = await to(getUser(req));
-  if (userError) return res.status(400).json(userError);
+  if (userError) return res.json(userError);
   return res.json({success: true, data: user});
 };

@@ -4,11 +4,11 @@ const {getUser} = require('../utils');
 
 module.exports = async (req, res) => {
   const [userError, user] = await to(getUser(req));
-  if (userError) return res.status(400).json(userError);
+  if (userError) return res.json(userError);
   const {name, password} = req.body;
   const [groupError, group] = await to(Group.create({
     name, password, members: [user]
   }));
-  if (groupError) return res.status(400).json(groupError);
+  if (groupError) return res.json(groupError);
   return res.json({success: true, data: group});
 };

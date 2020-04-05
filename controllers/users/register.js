@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   }));
   if (userError) {
     console.log(userError);
-    return res.status(400).json(userError);
+    return res.json(userError);
   }
   return res.json({success: true, data: user});
 };
