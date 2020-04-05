@@ -3,7 +3,8 @@ const User = require('../models/User');
 const to = require('await-to-js').default;
 
 async function getUser(req) {
-  const Authorization = req.get('Authorization');
+  const Authorization = req.headers['authorization'];
+  console.log(req.headers);
   if (!Authorization) return Promise.reject({message: 'Not authorized'});
   let [username, password] = atob(Authorization.replace('Basic ', '')).split(':');
   console.log(username, password);
