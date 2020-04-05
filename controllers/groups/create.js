@@ -1,4 +1,5 @@
 const Group = require('../../models/Group');
+const User = require('../../models/User');
 const to = require('await-to-js').default;
 const {getUser} = require('../utils');
 
@@ -9,8 +10,8 @@ module.exports = async (req, res) => {
   const [groupError, group] = await to(Group.create({
     name, password, members: [user._id]
   }));
-  user.group = group._id;
-  user.save();
   if (groupError) return res.json(groupError);
+  const [userUpdateError] = await User.findByIdAndUpdate(user._id, {group: group._id});
+  if (userUpdateError) return res.json(userUpdateError);
   return res.json({success: true, data: group});
 };
