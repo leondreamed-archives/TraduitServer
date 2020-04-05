@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb+srv://traduit:${process.env.DB_PASSWORD}@traduit-guxow.mongodb.net/test`);
+mongoose.connect(`mongodb+srv://traduit:${process.env.DB_PASSWORD}@traduit-guxow.mongodb.net/test`, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
