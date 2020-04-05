@@ -20,10 +20,8 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function(next) {
-  const self = this;
-
-  bcrypt.hash(self.password, 10, (error, hash) => {
-    self.password = hash;
+  bcrypt.hash(this.password, 10, (error, hash) => {
+    this.password = hash;
     next();
   });
 });

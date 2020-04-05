@@ -9,7 +9,7 @@ async function getUser(req) {
   const [userError, user] = await to(User.findOne({username})
   .select('+password').exec());
   if (userError) return Promise.reject(userError);
-  const match = await bcrypt.compare(user.password, password);
+  const match = await bcrypt.compare(password, user.password);
   if (!match) return Promise.reject({
     message: "Invalid username or password."
   });
