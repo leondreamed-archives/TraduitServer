@@ -3,11 +3,14 @@ const User = require('../models/User');
 const to = require('await-to-js').default;
 
 async function getUser(req) {
-  const Authorization = req.headers['authorization'];
+  let Authorization = req.headers['authorization'];
   console.log(Authorization);
-  const str = atob(Authorization.replace('Basic ', '')).split(':');
-  console.log(str);
-  let [username, password] = str;
+  let test = Authorization.replace('Basic ', '');
+  console.log(test);
+  console.log(atob(test));
+  console.log('hi');
+  let str = atob(test);
+  let [username, password] = str.split(':');
   console.log(username, password);
   const [userError, user] = await to(User.findOne({username})
   .select('+password').exec());
