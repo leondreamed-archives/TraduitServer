@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     name, password, members: [user._id]
   }));
   if (groupError) return res.json(groupError);
-  const [userUpdateError] = await User.findByIdAndUpdate(user._id, {group: group._id});
+  const [userUpdateError] = await to(User.findByIdAndUpdate(user._id, {group: group._id}));
   if (userUpdateError) return res.json(userUpdateError);
   return res.json({success: true, data: group});
 };
